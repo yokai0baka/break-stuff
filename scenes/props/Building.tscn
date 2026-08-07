@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://215tsw4n0pda"]
+
+[ext_resource type="Script" uid="uid://bg2ex8mtcdcee" path="res://scripts/Props/Building.gd" id="1_1phne"]
+[ext_resource type="PackedScene" uid="uid://dbmi85ter0ame" path="res://global/scenes/VFX/Smoke.tscn" id="2_u6hci"]
+[ext_resource type="PackedScene" uid="uid://jd2kmmo8yu0e" path="res://global/scenes/VFX/Debris.tscn" id="3_n5e78"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1phne"]
+albedo_color = Color(0.32396543, 0.32396543, 0.3239654, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_isfe7"]
+material = SubResource("StandardMaterial3D_1phne")
+size = Vector3(0.8, 1.5, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1phne"]
+size = Vector3(0.8, 1.5, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dyfce"]
+size = Vector3(0.8, 1.5, 0.8)
+
+[sub_resource type="Animation" id="Animation_dyfce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Debris:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitzone/CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1phne"]
+resource_name = "collapsed"
+length = 2.5000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.08726646, 0, 0), Vector3(-0.08726646, 0, 0), Vector3(0.08726646, 0, 0), Vector3(-0.08726646, 0, 0), Vector3(0.08726646, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.6, 0), Vector3(0, 0.6, 0), Vector3(0, -1.8000001, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Debris:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitzone/CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_u6hci"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.33333334, 0.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.08726646, 0, 0), Vector3(0, 0, 0), Vector3(0.08726646, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Debris:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u6hci"]
+_data = {
+&"RESET": SubResource("Animation_dyfce"),
+&"collapsed": SubResource("Animation_1phne"),
+&"damage": SubResource("Animation_u6hci")
+}
+
+[node name="Building" type="RigidBody3D" unique_id=1504472231]
+freeze = true
+script = ExtResource("1_1phne")
+
+[node name="Smoke" parent="." unique_id=2054812067 instance=ExtResource("2_u6hci")]
+
+[node name="Debris" parent="." unique_id=1087684908 instance=ExtResource("3_n5e78")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+lifetime = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2068638078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = SubResource("BoxMesh_isfe7")
+
+[node name="Hitzone" type="Area3D" parent="." unique_id=1907597136]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitzone" unique_id=315731654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, 0)
+shape = SubResource("BoxShape3D_1phne")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1567540397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, 0)
+shape = SubResource("BoxShape3D_dyfce")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1371727898]
+libraries/ = SubResource("AnimationLibrary_u6hci")
+
+[connection signal="area_entered" from="Hitzone" to="." method="_on_hitzone_area_entered"]

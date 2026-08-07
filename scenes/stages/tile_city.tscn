@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cb3rt2p1mqew7"]
+
+[ext_resource type="Texture2D" uid="uid://cmusa074tuorq" path="res://assets/tiles/city/road-x.png" id="1_u526x"]
+[ext_resource type="Texture2D" uid="uid://bmcna11b1mxbu" path="res://assets/tiles/city/road-y.png" id="2_3eqew"]
+[ext_resource type="Texture2D" uid="uid://coxb8m3um3cws" path="res://assets/tiles/city/road-x-corner.png" id="2_e633m"]
+[ext_resource type="Texture2D" uid="uid://bmpm0vsfpj1nd" path="res://assets/tiles/city/road-y+x.png" id="3_e633m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_osyi8"]
+transparency = 1
+albedo_texture = ExtResource("1_u526x")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8ema7"]
+material = SubResource("StandardMaterial3D_osyi8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqbge"]
+transparency = 1
+albedo_texture = ExtResource("2_3eqew")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_osyi8"]
+material = SubResource("StandardMaterial3D_uqbge")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaj5l"]
+transparency = 1
+albedo_texture = ExtResource("2_e633m")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_isfe7"]
+material = SubResource("StandardMaterial3D_vaj5l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ema7"]
+transparency = 1
+albedo_texture = ExtResource("3_e633m")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vaj5l"]
+material = SubResource("StandardMaterial3D_8ema7")
+
+[node name="TileCity" type="Node3D" unique_id=2144143599]
+
+[node name="RoadLine" type="MeshInstance3D" parent="." unique_id=831139214]
+mesh = SubResource("PlaneMesh_8ema7")
+
+[node name="RoadLineY" type="MeshInstance3D" parent="." unique_id=1530612846]
+mesh = SubResource("PlaneMesh_osyi8")
+
+[node name="RoadCorner" type="MeshInstance3D" parent="." unique_id=1876799903]
+mesh = SubResource("PlaneMesh_isfe7")
+
+[node name="RoadLineCorner" type="MeshInstance3D" parent="." unique_id=1118400701]
+mesh = SubResource("PlaneMesh_vaj5l")

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ch3js3gq6gt1v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaj5l"]
+albedo_color = Color(0.13571939, 0.13571936, 0.13571936, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_isfe7"]
+material = SubResource("StandardMaterial3D_vaj5l")
+size = Vector3(0.4, 0.2, 0.3)
+
+[node name="Tank" type="RigidBody3D" unique_id=1502987114]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=452248656]
+mesh = SubResource("BoxMesh_isfe7")

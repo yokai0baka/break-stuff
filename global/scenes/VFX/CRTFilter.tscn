@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://dnnl876kswwkg"]
+
+[ext_resource type="Shader" uid="uid://d2j5bpl8ifp3f" path="res://global/scripts/CRTFilter.gdshader" id="1_28psd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ema7"]
+shader = ExtResource("1_28psd")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vaj5l"]
+size = Vector2(1280, 720)
+center_offset = Vector3(640, 360, 0)
+
+[node name="CRTFilter" type="CanvasLayer" unique_id=178072553]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=959638083]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.0627451, 0.28627452, 0.03137255, 0.3019608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1080925416]
+material = SubResource("ShaderMaterial_8ema7")
+mesh = SubResource("QuadMesh_vaj5l")
