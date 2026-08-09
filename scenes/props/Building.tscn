@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://215tsw4n0pda"]
 
-[ext_resource type="Script" uid="uid://bg2ex8mtcdcee" path="res://scripts/Props/Building.gd" id="1_1phne"]
+[ext_resource type="Script" uid="uid://bg2ex8mtcdcee" path="res://scripts/props/Building.gd" id="1_1phne"]
 [ext_resource type="PackedScene" uid="uid://dbmi85ter0ame" path="res://global/scenes/VFX/Smoke.tscn" id="2_u6hci"]
 [ext_resource type="PackedScene" uid="uid://jd2kmmo8yu0e" path="res://global/scenes/VFX/Debris.tscn" id="3_n5e78"]
+[ext_resource type="AudioStream" uid="uid://c4quxpoexehl4" path="res://assets/sfx/hit_building.wav" id="4_rj8p2"]
+[ext_resource type="AudioStream" uid="uid://i2smcev5q4v6" path="res://assets/sfx/explosion_building.wav" id="5_d2qhy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1phne"]
 albedo_color = Color(0.32396543, 0.32396543, 0.3239654, 1)
@@ -143,6 +145,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DestroyedSound")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_d2qhy")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_u6hci"]
 resource_name = "damage"
@@ -180,6 +197,8 @@ _data = {
 }
 
 [node name="Building" type="RigidBody3D" unique_id=1504472231]
+collision_layer = 3
+collision_mask = 3
 freeze = true
 script = ExtResource("1_1phne")
 
@@ -188,6 +207,11 @@ script = ExtResource("1_1phne")
 [node name="Debris" parent="." unique_id=1087684908 instance=ExtResource("3_n5e78")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 lifetime = 1.0
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="." unique_id=1413425557]
+stream = ExtResource("4_rj8p2")
+
+[node name="DestroyedSound" type="AudioStreamPlayer3D" parent="." unique_id=332530725]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2068638078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)

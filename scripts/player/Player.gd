@@ -14,6 +14,8 @@ const JUMP_VELOCITY = 4.5
 @onready var animation_hud: AnimationPlayer = $SpringArm3D/Camera3D/HUD/AnimationHUD
 @onready var animation_flashing: AnimationPlayer = $SpringArm3D/Camera3D/HUD/AnimationFlashing
 
+var current_scene = "res://scenes/stages/" + str(Global.selected_stage) + ".tscn"
+
 func _process(_delta: float) -> void:
 	$SpringArm3D/Camera3D/HUD/Score.text = "Score: " + str(Global.score)
 	$SpringArm3D/Camera3D/HUD/Time.text = str(roundi(Global.time))
@@ -47,15 +49,22 @@ func _process(_delta: float) -> void:
 		await get_tree().create_timer(1.0).timeout
 		Global.game_paused = false
 	
-	if Input.is_action_just_pressed("special"):
-		$SpringArm3D/Camera3D.screen_shake(1.0, 1.25)
+	if Global.player_attacked:
+		$SpringArm3D/Camera3D.screen_shake(1.0, 0.5)
+		await get_tree().create_timer(0.5).timeout
+		Global.player_attacked = false
 	
-	if !Global.get_info:
+	if !Global.get_info_positive:
 		$SpringArm3D/Camera3D/HUD/PlusScore.visible = false
 		$SpringArm3D/Camera3D/HUD/PlusTime.visible = false
 	else:
 		$SpringArm3D/Camera3D/HUD/PlusScore.visible = true
 		$SpringArm3D/Camera3D/HUD/PlusTime.visible = true
+	
+	if !Global.get_info_negative:
+		$SpringArm3D/Camera3D/HUD/MinusTime.visible = false
+	else:
+		$SpringArm3D/Camera3D/HUD/MinusTime.visible = true
 	
 	# Trigger end game
 	if Global.end_game:
@@ -91,4 +100,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func stop_showing_info():
-	Global.get_info = false
+	Global.get_info_positive = false
+	Global.get_info_negative = false
+
+func _on_menu_button_pressed() -> void:
+	await get_tree().process_frame
+	get_tree().change_scene_to_file("res://scenes/menu/MainMenu.tscn")
+
+func _on_restart_button_pressed() -> void:
+	await get_tree().process_frame
+	get_tree().change_scene_to_file(current_scene)

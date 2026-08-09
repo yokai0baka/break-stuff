@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="break-stuff"
-run/main_scene="uid://d04opoqm66af6"
+run/main_scene="uid://bj7nj4i355yar"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -25,6 +25,10 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[global_group]
+
+Enemies=""
 
 [input]
 

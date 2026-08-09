@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bbia0fdrgd7a8"]
+
+[ext_resource type="PackedScene" uid="uid://dnnl876kswwkg" path="res://global/scenes/VFX/CRTFilter.tscn" id="2_mqdnt"]
+[ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="3_6oq8s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_isfe7"]
+font = ExtResource("3_6oq8s")
+font_size = 52
+
+[node name="Options" type="Node2D" unique_id=184439916]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1837718203]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.09470794, 0.3814538, 0.053624988, 1)
+
+[node name="CRTFilter" parent="." unique_id=178072553 instance=ExtResource("2_mqdnt")]
+
+[node name="Title" type="Label" parent="." unique_id=1627101250]
+offset_left = 64.0
+offset_top = 8.0
+offset_right = 341.0
+offset_bottom = 168.0
+pivot_offset = Vector2(104, 80)
+size_flags_horizontal = 4
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_isfe7")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -7,6 +7,9 @@ var health = 2
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var hitzone: Area3D = $Hitzone
 
+# Sounds
+@onready var hit_sound: AudioStreamPlayer3D = $HitSound
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -22,8 +25,9 @@ func _process(_delta: float) -> void:
 
 func _on_hitzone_area_entered(area: Area3D) -> void:
 	if "Attack" in area.name:
+		self.hit_sound.play()
 		Global.score += 100
 		Global.time += 5.0
-		Global.get_info = true
+		Global.get_info_positive = true
 		self.health -= 1
 		self.animation_player.play("damage")

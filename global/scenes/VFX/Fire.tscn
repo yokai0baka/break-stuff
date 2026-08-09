@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://d4i7d0635ivpp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjoyw"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Gradient" id="Gradient_1ve2i"]
+colors = PackedColorArray(1, 0.3019608, 0, 1, 1, 0.7490196, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1ve2i"]
+gradient = SubResource("Gradient_1ve2i")
+
+[sub_resource type="Curve" id="Curve_xjgtv"]
+_data = [Vector2(0.2643314, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qrj4p"]
+curve = SubResource("Curve_xjgtv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qrj4p"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 3, 0)
+scale_min = 0.25
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_qrj4p")
+color_initial_ramp = SubResource("GradientTexture1D_1ve2i")
+
+[sub_resource type="SphereMesh" id="SphereMesh_w44a2"]
+
+[node name="Fire" type="GPUParticles3D" unique_id=1805636857]
+material_override = SubResource("StandardMaterial3D_cjoyw")
+emitting = false
+amount = 32
+lifetime = 1.25
+one_shot = true
+explosiveness = 0.5
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_qrj4p")
+draw_pass_1 = SubResource("SphereMesh_w44a2")
