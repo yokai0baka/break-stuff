@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 0.75
+var SPEED = 0.75
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var attack_sound: AudioStreamPlayer3D = $AttackSound
@@ -12,6 +12,12 @@ var cooldown_attack = 0.0
 func _process(delta: float) -> void:
 	if cooldown_attack <= 5.0:
 		cooldown_attack -= delta
+	
+	if Global.game_paused:
+		SPEED = 0.0
+	else:
+		SPEED = 0.75
+
 
 func _physics_process(_delta: float) -> void:
 	var current_location = global_transform.origin

@@ -1,11 +1,10 @@
 extends CharacterBody3D
 
-const SPEED = 2.0
-const JUMP_VELOCITY = 4.5
+var SPEED = 2.0
 
 # Attack colliders directions
-@onready var collision_shape_l: CollisionShape3D = $"Attack-L/CollisionShapeL"
-@onready var collision_shape_r: CollisionShape3D = $"Attack-R/CollisionShapeR"
+@onready var collision_shape_l: CollisionShape3D = $"Attacks/Attack-L/CollisionShapeL"
+@onready var collision_shape_r: CollisionShape3D = $"Attacks/Attack-R/CollisionShapeR"
 
 # Animations
 @onready var animation_player: AnimationPlayer = $SubViewport/Player2dModel/AnimationPlayer
@@ -28,26 +27,29 @@ func _process(_delta: float) -> void:
 		if Input.is_action_just_pressed("attack") && collision_shape_r.disabled:
 			collision_shape_r.disabled = false
 			$SpringArm3D/AnimationCamera.play("attack_zoom")
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(0.75).timeout
 			collision_shape_r.disabled = true
 	elif $Sprite3D.flip_h == false:
 		if Input.is_action_just_pressed("attack") && collision_shape_l.disabled:
 			collision_shape_l.disabled = false
 			$SpringArm3D/AnimationCamera.play("attack_zoom")
-			await get_tree().create_timer(1.0).timeout
+			await get_tree().create_timer(0.75).timeout
 			collision_shape_l.disabled = true
 	
 	# Game pause
 	if Input.is_action_just_pressed("menu") && !Global.game_paused:
 		animation_hud.play("paused")
 		animation_flashing.play("flashing_paused")
-		await get_tree().create_timer(1.0).timeout
 		Global.game_paused = true
 	elif Input.is_action_just_pressed("menu") && Global.game_paused:
 		animation_hud.play_backwards("paused")
 		animation_flashing.play("RESET")
-		await get_tree().create_timer(1.0).timeout
 		Global.game_paused = false
+	
+	if Global.game_paused:
+		SPEED = 0.0
+	else:
+		SPEED = 2.0
 	
 	if Global.player_attacked:
 		$SpringArm3D/Camera3D.screen_shake(1.0, 0.5)
@@ -104,9 +106,11 @@ func stop_showing_info():
 	Global.get_info_negative = false
 
 func _on_menu_button_pressed() -> void:
+	Global.return_values()
 	await get_tree().process_frame
 	get_tree().change_scene_to_file("res://scenes/menu/MainMenu.tscn")
 
 func _on_restart_button_pressed() -> void:
+	Global.return_values()
 	await get_tree().process_frame
 	get_tree().change_scene_to_file(current_scene)

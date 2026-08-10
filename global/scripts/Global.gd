@@ -1,7 +1,7 @@
 extends Node
 
 var score = 0
-var time = 60
+var time = 60.0
 var time_spd = 1
 
 var get_info_positive = false
@@ -21,3 +21,8 @@ func _process(delta: float) -> void:
 	if time <= 0:
 		end_game = true
 		time = 0
+
+func return_values():
+	Global.time = 60.0
+	Global.score = 0
+	Global.game_paused = false

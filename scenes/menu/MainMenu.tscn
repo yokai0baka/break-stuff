@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://box3ty7utlf5n" path="res://scripts/menu/MainMenu.gd" id="1_uwj7d"]
 [ext_resource type="PackedScene" uid="uid://dnnl876kswwkg" path="res://global/scenes/VFX/CRTFilter.tscn" id="2_2nud1"]
+[ext_resource type="AudioStream" uid="uid://osf5eppbg5jv" path="res://assets/sfx/menu_confirm.wav" id="2_iv2fv"]
 [ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="3_iv2fv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_isfe7"]
@@ -13,6 +14,9 @@ font = ExtResource("3_iv2fv")
 
 [node name="MainMenu" type="Node2D" unique_id=184439916]
 script = ExtResource("1_uwj7d")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1393746898]
+stream = ExtResource("2_iv2fv")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1837718203]
 offset_right = 1280.0

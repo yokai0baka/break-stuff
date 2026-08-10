@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dstipolmg1awp" path="res://scripts/player/Attack.gd" id="3_524rm"]
 [ext_resource type="Shader" uid="uid://fmipiuk6nmwk" path="res://global/scripts/palette.gdshader" id="4_npwbq"]
 [ext_resource type="Texture2D" uid="uid://dfyw5ktwd08i7" path="res://assets/palettes/kirokaze-gameboy-1x.png" id="5_v42im"]
+[ext_resource type="PackedScene" uid="uid://bq8r7ypf6pdy7" path="res://global/scenes/VFX/ShockWave.tscn" id="8_pn6s4"]
+[ext_resource type="PackedScene" uid="uid://jd2kmmo8yu0e" path="res://global/scenes/VFX/Debris.tscn" id="9_7oing"]
 
 [sub_resource type="Animation" id="Animation_180ig"]
 length = 0.001
@@ -459,12 +461,544 @@ shader_parameter/palette = ExtResource("5_v42im")
 [sub_resource type="ViewportTexture" id="ViewportTexture_4rhtj"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_isfe7"]
-size = Vector3(0.3, 0.7, 0.4)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_isfe7"]
 radius = 0.3
 height = 1.2625
+
+[sub_resource type="Animation" id="Animation_rn7t0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Special1-L/MeshInstance3D:mesh:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Special1-L/MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(8.940697e-08, -2.8500001, -7.450581e-09)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Special1-L/MeshInstance3D:mesh:top_radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.099999994]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Special1-L/MeshInstance3D:mesh:bottom_radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.099999994]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Special1-R/MeshInstance3D:mesh:height")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Special1-R/MeshInstance3D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -7.450581e-09)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Special1-R/MeshInstance3D:mesh:top_radius")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.099999994]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Special1-R/MeshInstance3D:mesh:bottom_radius")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.099999994]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Special1-R/CollisionShape3D:disabled")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Special1-L/CollisionShape3D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Special1-R:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Special1-L:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Special2/ShockWave:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Special2/CollisionShape3D:disabled")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Special2/Debris:emitting")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Special3/MeshInstance3D:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Special3/MeshInstance3D:mesh:radius")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Special3/MeshInstance3D:mesh:height")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Special3/CollisionShape3D:disabled")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ov1oi"]
+resource_name = "special1_L"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Special1-L/MeshInstance3D:mesh:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 5.9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Special1-L/MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(8.940697e-08, -2.8500001, -7.450581e-09)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Special1-L/MeshInstance3D:mesh:top_radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4666667, 1.51, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.05, 0.099999994, 0.1, 0.001]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Special1-L/MeshInstance3D:mesh:bottom_radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4666667, 1.51, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.05, 0.099999994, 0.1, 0.001]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Special1-L/CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Special1-L:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_8qjgm"]
+resource_name = "special1_R"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Special1-R/MeshInstance3D:mesh:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.2, 5.9]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Special1-R/MeshInstance3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -2.85, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Special1-R/MeshInstance3D:mesh:top_radius")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4666667, 1.51, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.05, 0.099999994, 0.1, 0.001]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Special1-R/MeshInstance3D:mesh:bottom_radius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4666667, 1.51, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.05, 0.099999994, 0.1, 0.001]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Special1-R/CollisionShape3D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Special1-R:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_ejd4k"]
+resource_name = "special2"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Special2/ShockWave:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Special2/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Special2/Debris:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_2xrq6"]
+resource_name = "special3"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Special3/MeshInstance3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Special3/MeshInstance3D:mesh:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.25, 5.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Special3/MeshInstance3D:mesh:height")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 10.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Special3/CollisionShape3D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.03333333, 0.35, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rn7t0"]
+_data = {
+&"RESET": SubResource("Animation_rn7t0"),
+&"special1_L": SubResource("Animation_ov1oi"),
+&"special1_R": SubResource("Animation_8qjgm"),
+&"special2": SubResource("Animation_ejd4k"),
+&"special3": SubResource("Animation_2xrq6")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_isfe7"]
+size = Vector3(0.3, 0.7, 0.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v42im"]
+transparency = 1
+albedo_color = Color(0, 18.892157, 18.892157, 0.6862745)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v42im"]
+material = SubResource("StandardMaterial3D_v42im")
+top_radius = 0.099999994
+bottom_radius = 0.099999994
+height = 0.2
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pn6s4"]
+height = 5.9375
+radius = 0.7
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn6s4"]
+transparency = 1
+albedo_color = Color(0, 18.892157, 18.892157, 0.6862745)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pn6s4"]
+material = SubResource("StandardMaterial3D_pn6s4")
+top_radius = 0.099999994
+bottom_radius = 0.099999994
+height = 0.2
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_v42im"]
+height = 3.9
+radius = 0.7
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_7oing"]
+height = 0.6
+radius = 1.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaj5l"]
+transparency = 1
+albedo_color = Color(18.892157, 15.018564, 0, 0.60784316)
+
+[sub_resource type="SphereMesh" id="SphereMesh_isfe7"]
+material = SubResource("StandardMaterial3D_vaj5l")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_isfe7"]
+radius = 2.5
 
 [sub_resource type="Animation" id="Animation_c3xxp"]
 resource_name = "Idle"
@@ -550,7 +1084,7 @@ _data = {
 script = ExtResource("1_gfjak")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=369846281]
-transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0.7, 0.7)
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660253, 0, -0.8660253, 0.49999997, 0, 1, 0.7)
 
 [node name="AnimationCamera" type="AnimationPlayer" parent="SpringArm3D" unique_id=558077130]
 libraries/ = SubResource("AnimationLibrary_180ig")
@@ -717,27 +1251,80 @@ alpha_cut = 2
 texture_filter = 0
 texture = SubResource("ViewportTexture_4rhtj")
 
-[node name="Attack-L" type="Area3D" parent="." unique_id=830567192]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1803971780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36874998, 0)
+shape = SubResource("CapsuleShape3D_isfe7")
+
+[node name="Attacks" type="Node3D" parent="." unique_id=1377368877]
+
+[node name="AnimationSpecial" type="AnimationPlayer" parent="Attacks" unique_id=929568146]
+libraries/ = SubResource("AnimationLibrary_rn7t0")
+
+[node name="Attack-L" type="Area3D" parent="Attacks" unique_id=830567192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
 script = ExtResource("3_524rm")
 
-[node name="CollisionShapeL" type="CollisionShape3D" parent="Attack-L" unique_id=2037386328]
+[node name="CollisionShapeL" type="CollisionShape3D" parent="Attacks/Attack-L" unique_id=2037386328]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100000024, 0, 0)
 shape = SubResource("BoxShape3D_isfe7")
 disabled = true
 
-[node name="Attack-R" type="Area3D" parent="." unique_id=308592223]
+[node name="Attack-R" type="Area3D" parent="Attacks" unique_id=308592223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0)
 script = ExtResource("3_524rm")
 
-[node name="CollisionShapeR" type="CollisionShape3D" parent="Attack-R" unique_id=782879739]
+[node name="CollisionShapeR" type="CollisionShape3D" parent="Attacks/Attack-R" unique_id=782879739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100000024, 0, 0)
 shape = SubResource("BoxShape3D_isfe7")
 disabled = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1803971780]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36874998, 0)
-shape = SubResource("CapsuleShape3D_isfe7")
+[node name="Special1-L" type="Area3D" parent="Attacks" unique_id=1295048684]
+transform = Transform3D(-5.9604645e-08, 1, 0, -1, -5.9604645e-08, 0, 0, 0, 1, -0.2, 0.4, 0.1)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Attacks/Special1-L" unique_id=1732799672]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.940697e-08, -2.8500001, -7.450581e-09)
+mesh = SubResource("CylinderMesh_v42im")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacks/Special1-L" unique_id=1221317051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.8187497, 0)
+shape = SubResource("CylinderShape3D_pn6s4")
+disabled = true
+
+[node name="Special1-R" type="Area3D" parent="Attacks" unique_id=586527001]
+transform = Transform3D(-5.9604645e-08, -1, 0, 1, -5.9604645e-08, 0, 0, 0, 1, 0.2, 0.4, 0.1)
+visible = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Attacks/Special1-R" unique_id=547912046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.450581e-09)
+mesh = SubResource("CylinderMesh_pn6s4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacks/Special1-R" unique_id=1441899914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8000002, 0)
+shape = SubResource("CylinderShape3D_v42im")
+disabled = true
+
+[node name="Special2" type="Area3D" parent="Attacks" unique_id=1787214991]
+
+[node name="ShockWave" parent="Attacks/Special2" unique_id=1285484268 instance=ExtResource("8_pn6s4")]
+
+[node name="Debris" parent="Attacks/Special2" unique_id=1087684908 instance=ExtResource("9_7oing")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacks/Special2" unique_id=590007985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999964, 0)
+shape = SubResource("CylinderShape3D_7oing")
+disabled = true
+
+[node name="Special3" type="Area3D" parent="Attacks" unique_id=1551505927]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Attacks/Special3" unique_id=1828695448]
+visible = false
+mesh = SubResource("SphereMesh_isfe7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Attacks/Special3" unique_id=72189127]
+shape = SubResource("SphereShape3D_isfe7")
+disabled = true
 
 [node name="AnimationJuice" type="AnimationPlayer" parent="." unique_id=53341368]
 libraries/ = SubResource("AnimationLibrary_tpg5x")
@@ -751,7 +1338,7 @@ size = Vector2i(64, 64)
 
 [connection signal="pressed" from="SpringArm3D/Camera3D/HUD/MenuButton" to="." method="_on_menu_button_pressed"]
 [connection signal="pressed" from="SpringArm3D/Camera3D/HUD/RestartButton" to="." method="_on_restart_button_pressed"]
-[connection signal="body_shape_entered" from="Attack-L" to="Attack-L" method="_on_body_shape_entered"]
-[connection signal="body_shape_entered" from="Attack-R" to="Attack-R" method="_on_body_shape_entered"]
+[connection signal="body_shape_entered" from="Attacks/Attack-L" to="Attacks/Attack-L" method="_on_body_shape_entered"]
+[connection signal="body_shape_entered" from="Attacks/Attack-R" to="Attacks/Attack-R" method="_on_body_shape_entered"]
 
 [editable path="SubViewport/Player2dModel"]
