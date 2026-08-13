@@ -5,11 +5,23 @@
 [ext_resource type="PackedScene" uid="uid://dnnl876kswwkg" path="res://global/scenes/VFX/CRTFilter.tscn" id="2_524rm"]
 [ext_resource type="Script" uid="uid://vs6ovohtkke8" path="res://scenes/player/camera_3d.gd" id="2_c3xxp"]
 [ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="2_tpg5x"]
+[ext_resource type="Texture2D" uid="uid://8dharss14bjg" path="res://assets/geiger/geiger_high1.png" id="3_8qjgm"]
+[ext_resource type="Texture2D" uid="uid://qg0xlwk3yvpv" path="res://assets/geiger/geiger_low1.png" id="3_180ig"]
 [ext_resource type="Script" uid="uid://dstipolmg1awp" path="res://scripts/player/Attack.gd" id="3_524rm"]
-[ext_resource type="Shader" uid="uid://fmipiuk6nmwk" path="res://global/scripts/palette.gdshader" id="4_npwbq"]
-[ext_resource type="Texture2D" uid="uid://dfyw5ktwd08i7" path="res://assets/palettes/kirokaze-gameboy-1x.png" id="5_v42im"]
+[ext_resource type="Texture2D" uid="uid://bhembrkn3he43" path="res://assets/geiger/geiger_low2.png" id="4_20koh"]
+[ext_resource type="Texture2D" uid="uid://bf6mseu3wqdju" path="res://assets/geiger/geiger_high2.png" id="4_ejd4k"]
+[ext_resource type="PackedScene" uid="uid://dsw4jmn2x3vr1" path="res://global/scenes/VFX/PaletteChanger.tscn" id="5_pn6s4"]
+[ext_resource type="Texture2D" uid="uid://bohtx2g1c51fc" path="res://assets/geiger/geiger_mid1.png" id="7_2xrq6"]
+[ext_resource type="Script" uid="uid://ctep3r0a3nafy" path="res://scripts/player/Special.gd" id="7_7oing"]
+[ext_resource type="Texture2D" uid="uid://cokbdnirrxfna" path="res://assets/geiger/geiger_mid2.png" id="8_pi3ps"]
 [ext_resource type="PackedScene" uid="uid://bq8r7ypf6pdy7" path="res://global/scenes/VFX/ShockWave.tscn" id="8_pn6s4"]
 [ext_resource type="PackedScene" uid="uid://jd2kmmo8yu0e" path="res://global/scenes/VFX/Debris.tscn" id="9_7oing"]
+[ext_resource type="Texture2D" uid="uid://ld6jfnv24ajv" path="res://assets/special_marker/marker1.png" id="9_pi3ps"]
+[ext_resource type="Texture2D" uid="uid://bglxay4jdsusd" path="res://assets/special_marker/marker2.png" id="10_kswpp"]
+[ext_resource type="Texture2D" uid="uid://c04vcpg0b0k11" path="res://assets/special_marker/marker3.png" id="11_v5i4m"]
+[ext_resource type="AudioStream" uid="uid://7n1jjq8j5qsx" path="res://assets/sfx/special1.wav" id="15_kswpp"]
+[ext_resource type="AudioStream" uid="uid://djtqc2w17dkth" path="res://assets/sfx/special2_hit.wav" id="20_v5i4m"]
+[ext_resource type="AudioStream" uid="uid://bghavptenfc8i" path="res://assets/sfx/special3.wav" id="21_p1lr0"]
 
 [sub_resource type="Animation" id="Animation_180ig"]
 length = 0.001
@@ -419,6 +431,59 @@ _data = {
 &"paused": SubResource("Animation_npwbq")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_isfe7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8qjgm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ejd4k")
+}],
+"loop": 1,
+"name": &"geiger_high",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_180ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_20koh")
+}],
+"loop": 1,
+"name": &"geiger_low",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2xrq6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pi3ps")
+}],
+"loop": 1,
+"name": &"geiger_mid",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vaj5l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_pi3ps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_kswpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_v5i4m")
+}],
+"loop": 0,
+"name": &"selector",
+"speed": 5.0
+}]
+
 [sub_resource type="LabelSettings" id="LabelSettings_524rm"]
 font = ExtResource("2_tpg5x")
 font_size = 32
@@ -435,7 +500,6 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_180ig"]
 font = ExtResource("2_tpg5x")
 font_size = 32
-font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5stf6"]
 font = ExtResource("2_tpg5x")
@@ -450,13 +514,13 @@ font_size = 32
 font = ExtResource("2_tpg5x")
 font_size = 52
 
+[sub_resource type="LabelSettings" id="LabelSettings_vaj5l"]
+font = ExtResource("2_tpg5x")
+font_size = 36
+
 [sub_resource type="LabelSettings" id="LabelSettings_c3xxp"]
 font = ExtResource("2_tpg5x")
 font_size = 52
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3xxp"]
-shader = ExtResource("4_npwbq")
-shader_parameter/palette = ExtResource("5_v42im")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_4rhtj"]
 viewport_path = NodePath("SubViewport")
@@ -695,6 +759,66 @@ tracks/18/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Attack-L:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Attack-R:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Special3Sound:playing")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Special2Sound:playing")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Special1Sound:playing")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ov1oi"]
 resource_name = "special1_L"
@@ -770,6 +894,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Attack-R:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Special1Sound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_8qjgm"]
@@ -847,6 +995,30 @@ tracks/5/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Attack-L:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Special1Sound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ejd4k"]
 resource_name = "special2"
@@ -883,6 +1055,18 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.13333334),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Special2Sound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -938,6 +1122,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Special3Sound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rn7t0"]
@@ -1110,6 +1306,19 @@ offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 0)
 
+[node name="Geiger" type="AnimatedSprite2D" parent="SpringArm3D/Camera3D/HUD" unique_id=1674318281]
+position = Vector2(1064, 512)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_isfe7")
+animation = &"geiger_high"
+autoplay = "geiger_low"
+
+[node name="SpecialSelector" type="AnimatedSprite2D" parent="SpringArm3D/Camera3D/HUD" unique_id=1835089511]
+position = Vector2(1064, 648)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_vaj5l")
+animation = &"selector"
+
 [node name="Score" type="Label" parent="SpringArm3D/Camera3D/HUD" unique_id=1234116571]
 layout_mode = 0
 offset_left = 114.0
@@ -1188,6 +1397,16 @@ offset_bottom = 376.0
 text = "BREAK'EM ALL"
 label_settings = SubResource("LabelSettings_isfe7")
 
+[node name="BomberLabel" type="Label" parent="SpringArm3D/Camera3D/HUD" unique_id=1337593115]
+visible = false
+layout_mode = 0
+offset_left = 424.0
+offset_top = 312.0
+offset_right = 879.0
+offset_bottom = 358.0
+text = "BOMBER APROACHING"
+label_settings = SubResource("LabelSettings_vaj5l")
+
 [node name="PausedLabel" type="Label" parent="SpringArm3D/Camera3D/HUD" unique_id=664217604]
 visible = false
 z_index = 1
@@ -1234,14 +1453,12 @@ text = "RESTART
 "
 flat = true
 
-[node name="Palette" type="ColorRect" parent="SpringArm3D/Camera3D/HUD" unique_id=1563801189]
-visible = false
-material = SubResource("ShaderMaterial_c3xxp")
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-
 [node name="CRTFilter" parent="SpringArm3D/Camera3D/HUD" unique_id=178072553 instance=ExtResource("2_524rm")]
+
+[node name="PaletteChanger" parent="SpringArm3D/Camera3D/HUD" unique_id=714479216 instance=ExtResource("5_pn6s4")]
+layout_mode = 1
+offset_right = 1240.0
+offset_bottom = 680.0
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1191421823]
 transform = Transform3D(1.5, 0, 0, 0, 1.0606601, 1.0606601, 0, -1.0606601, 1.0606601, 0, 0, 0)
@@ -1262,6 +1479,7 @@ libraries/ = SubResource("AnimationLibrary_rn7t0")
 
 [node name="Attack-L" type="Area3D" parent="Attacks" unique_id=830567192]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0, 0)
+visible = false
 script = ExtResource("3_524rm")
 
 [node name="CollisionShapeL" type="CollisionShape3D" parent="Attacks/Attack-L" unique_id=2037386328]
@@ -1271,6 +1489,7 @@ disabled = true
 
 [node name="Attack-R" type="Area3D" parent="Attacks" unique_id=308592223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0, 0)
+visible = false
 script = ExtResource("3_524rm")
 
 [node name="CollisionShapeR" type="CollisionShape3D" parent="Attacks/Attack-R" unique_id=782879739]
@@ -1281,6 +1500,7 @@ disabled = true
 [node name="Special1-L" type="Area3D" parent="Attacks" unique_id=1295048684]
 transform = Transform3D(-5.9604645e-08, 1, 0, -1, -5.9604645e-08, 0, 0, 0, 1, -0.2, 0.4, 0.1)
 visible = false
+script = ExtResource("7_7oing")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Attacks/Special1-L" unique_id=1732799672]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.940697e-08, -2.8500001, -7.450581e-09)
@@ -1294,6 +1514,7 @@ disabled = true
 [node name="Special1-R" type="Area3D" parent="Attacks" unique_id=586527001]
 transform = Transform3D(-5.9604645e-08, -1, 0, 1, -5.9604645e-08, 0, 0, 0, 1, 0.2, 0.4, 0.1)
 visible = false
+script = ExtResource("7_7oing")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Attacks/Special1-R" unique_id=547912046]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.450581e-09)
@@ -1305,6 +1526,7 @@ shape = SubResource("CylinderShape3D_v42im")
 disabled = true
 
 [node name="Special2" type="Area3D" parent="Attacks" unique_id=1787214991]
+script = ExtResource("7_7oing")
 
 [node name="ShockWave" parent="Attacks/Special2" unique_id=1285484268 instance=ExtResource("8_pn6s4")]
 
@@ -1317,6 +1539,9 @@ shape = SubResource("CylinderShape3D_7oing")
 disabled = true
 
 [node name="Special3" type="Area3D" parent="Attacks" unique_id=1551505927]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("7_7oing")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Attacks/Special3" unique_id=1828695448]
 visible = false
@@ -1325,6 +1550,17 @@ mesh = SubResource("SphereMesh_isfe7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Attacks/Special3" unique_id=72189127]
 shape = SubResource("SphereShape3D_isfe7")
 disabled = true
+
+[node name="Special1Sound" type="AudioStreamPlayer3D" parent="Attacks" unique_id=276059809]
+stream = ExtResource("15_kswpp")
+volume_db = -6.0
+
+[node name="Special2Sound" type="AudioStreamPlayer3D" parent="Attacks" unique_id=118959498]
+stream = ExtResource("20_v5i4m")
+
+[node name="Special3Sound" type="AudioStreamPlayer3D" parent="Attacks" unique_id=1454595718]
+stream = ExtResource("21_p1lr0")
+volume_db = -2.0
 
 [node name="AnimationJuice" type="AnimationPlayer" parent="." unique_id=53341368]
 libraries/ = SubResource("AnimationLibrary_tpg5x")

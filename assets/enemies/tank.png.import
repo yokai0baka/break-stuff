@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw4ofkyi8nri"
-path="res://.godot/imported/ammo-8-1x.png-17b2d7ac6ca3f301e01cd0822a50c449.ctex"
+uid="uid://dg14b1kkf02fh"
+path="res://.godot/imported/tank.png-4c6f44ca1d48d73727c41eb05d69e283.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/palettes/ammo-8-1x.png"
-dest_files=["res://.godot/imported/ammo-8-1x.png-17b2d7ac6ca3f301e01cd0822a50c449.ctex"]
+source_file="res://assets/enemies/tank.png"
+dest_files=["res://.godot/imported/tank.png-4c6f44ca1d48d73727c41eb05d69e283.ctex"]
 
 [params]
 

@@ -6,6 +6,7 @@ var SPEED = 0.75
 @onready var attack_sound: AudioStreamPlayer3D = $AttackSound
 @onready var death_sound: AudioStreamPlayer3D = $DeathSound
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var animation_shooting: AnimationPlayer = $SubViewportShoot/Shooting2DModel/AnimationShooting
 
 var cooldown_attack = 0.0
 
@@ -18,13 +19,19 @@ func _process(delta: float) -> void:
 	else:
 		SPEED = 0.75
 
-
 func _physics_process(_delta: float) -> void:
 	var current_location = global_transform.origin
 	var next_location = navigation_agent_3d.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 	
 	velocity = velocity.move_toward(new_velocity, .25)
+	
+	if next_location.x > 0:
+		$Sprite3D.flip_h = false
+		$Sprite3DAttack.flip_h = false
+	elif next_location.x < 0:
+		$Sprite3D.flip_h = true
+		$Sprite3DAttack.flip_h = true
 	
 	move_and_slide()
 
@@ -41,18 +48,21 @@ func attack():
 	Global.time -= 10
 	self.attack_sound.play()
 	self.cooldown_attack = 5.0
-	self.animation_player.play("firing")
+	self.animation_shooting.play("shooting")
 
 func _on_hitzone_area_entered(area: Area3D) -> void:
 	if "Attack" in area.name:
-		$MeshInstance3D.visible = false
-		$CollisionShape3D.disabled = true
-		Global.score += 100
-		Global.time += 5.0
-		Global.get_info_positive = true
-		self.death_sound.play()
-		self.animation_player.play("death")
-		await get_tree().create_timer(1.75).timeout
+		get_killed()
+	
+	if "Special" in area.name:
+		get_killed()
 
-func self_queue_free():
-	self.queue_free()
+func get_killed():
+	$Sprite3D.visible = false
+	$CollisionShape3D.disabled = true
+	Global.score += 50
+	Global.time += 5.0
+	Global.get_info_positive = true
+	self.death_sound.play()
+	self.animation_player.play("death")
+	await get_tree().create_timer(1.75).timeout

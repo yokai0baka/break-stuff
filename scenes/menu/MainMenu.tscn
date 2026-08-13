@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnnl876kswwkg" path="res://global/scenes/VFX/CRTFilter.tscn" id="2_2nud1"]
 [ext_resource type="AudioStream" uid="uid://osf5eppbg5jv" path="res://assets/sfx/menu_confirm.wav" id="2_iv2fv"]
 [ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="3_iv2fv"]
+[ext_resource type="PackedScene" uid="uid://dsw4jmn2x3vr1" path="res://global/scenes/VFX/PaletteChanger.tscn" id="5_iv2fv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_isfe7"]
 font = ExtResource("3_iv2fv")
@@ -18,12 +19,11 @@ script = ExtResource("1_uwj7d")
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1393746898]
 stream = ExtResource("2_iv2fv")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1837718203]
+[node name="CRTFilter" parent="." unique_id=178072553 instance=ExtResource("2_2nud1")]
+
+[node name="PaletteChanger" parent="." unique_id=714479216 instance=ExtResource("5_iv2fv")]
 offset_right = 1280.0
 offset_bottom = 720.0
-color = Color(0.09470794, 0.3814538, 0.053624988, 1)
-
-[node name="CRTFilter" parent="." unique_id=178072553 instance=ExtResource("2_2nud1")]
 
 [node name="Title" type="Label" parent="." unique_id=1627101250]
 offset_left = 544.0

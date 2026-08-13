@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 var SPEED = 2.0
+var actual_special = 1
 
 # Attack colliders directions
 @onready var collision_shape_l: CollisionShape3D = $"Attacks/Attack-L/CollisionShapeL"
@@ -35,6 +36,43 @@ func _process(_delta: float) -> void:
 			$SpringArm3D/AnimationCamera.play("attack_zoom")
 			await get_tree().create_timer(0.75).timeout
 			collision_shape_l.disabled = true
+	
+	if Input.is_action_just_pressed("change_special"):
+		actual_special += 1
+		$SpringArm3D/Camera3D/HUD/SpecialSelector.frame += 1
+		if actual_special == 4 || $SpringArm3D/Camera3D/HUD/SpecialSelector.frame == 3:
+			$SpringArm3D/Camera3D/HUD/SpecialSelector.frame = 0
+			actual_special = 1
+	
+	if Input.is_action_just_pressed("special"):
+		match actual_special:
+			1:
+				if Global.energy >= 6:
+					if $Sprite3D.flip_h == false:
+						$Attacks/AnimationSpecial.play("special1_L")
+						await get_tree().create_timer(2.0).timeout
+						Global.energy = 0
+					elif $Sprite3D.flip_h == true:
+						$Attacks/AnimationSpecial.play("special1_R")
+						await get_tree().create_timer(2.0).timeout
+						Global.energy = 0
+			2:
+				if Global.energy >= 6:
+					$Attacks/AnimationSpecial.play("special2")
+					await get_tree().create_timer(2.0).timeout
+					Global.energy = 0
+			3:
+				if Global.energy >= 6:
+					$Attacks/AnimationSpecial.play("special3")
+					await get_tree().create_timer(2.0).timeout
+					Global.energy = 0
+	
+	if Global.energy <= 2:
+		$SpringArm3D/Camera3D/HUD/Geiger.play("geiger_low")
+	elif Global.energy <= 4:
+		$SpringArm3D/Camera3D/HUD/Geiger.play("geiger_mid")
+	else:
+		$SpringArm3D/Camera3D/HUD/Geiger.play("geiger_high")
 	
 	# Game pause
 	if Input.is_action_just_pressed("menu") && !Global.game_paused:
@@ -71,7 +109,7 @@ func _process(_delta: float) -> void:
 	# Trigger end game
 	if Global.end_game:
 		await get_tree().process_frame
-		get_tree().change_scene_to_file("res://scenes/menu/Menu.tscn")
+		get_tree().change_scene_to_file("res://scenes/menu/MainMenu.tscn")
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

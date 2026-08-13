@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b531vb55r5x8h"
-path="res://.godot/imported/citrink-1x.png-39d80477604e03a071298bfb4f7920ad.ctex"
+uid="uid://c04vcpg0b0k11"
+path="res://.godot/imported/marker3.png-bd60e6b53a993af2aed2d0e8ede4aa6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/palettes/citrink-1x.png"
-dest_files=["res://.godot/imported/citrink-1x.png-39d80477604e03a071298bfb4f7920ad.ctex"]
+source_file="res://assets/special_marker/marker3.png"
+dest_files=["res://.godot/imported/marker3.png-bd60e6b53a993af2aed2d0e8ede4aa6f.ctex"]
 
 [params]
 

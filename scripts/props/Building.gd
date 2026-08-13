@@ -25,9 +25,18 @@ func _process(_delta: float) -> void:
 
 func _on_hitzone_area_entered(area: Area3D) -> void:
 	if "Attack" in area.name:
-		self.hit_sound.play()
 		Global.score += 100
 		Global.time += 5.0
 		Global.get_info_positive = true
+		Global.energy += 1
 		self.health -= 1
+		self.hit_sound.play()
+		self.animation_player.play("damage")
+
+	if "Special" in area.name:
+		Global.score += 100
+		Global.time += 5.0
+		Global.get_info_positive = true
+		self.health -= 100
+		self.hit_sound.play()
 		self.animation_player.play("damage")

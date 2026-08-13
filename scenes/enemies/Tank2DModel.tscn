@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dyhficgq10vgt"]
+
+[ext_resource type="Texture2D" uid="uid://dg14b1kkf02fh" path="res://assets/enemies/tank.png" id="1_cdsvi"]
+
+[node name="Tank2DModel" type="Node2D" unique_id=553129782]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2020622218]
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1752494143]
+position = Vector2(16, 14)
+texture = ExtResource("1_cdsvi")
