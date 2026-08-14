@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dbmi85ter0ame"]
 
 [sub_resource type="Gradient" id="Gradient_ci5fh"]
-colors = PackedColorArray(0.12713575, 0.12713578, 0.12713575, 1, 0.37255222, 0.37255222, 0.37255222, 1)
+colors = PackedColorArray(0.1254902, 0.1254902, 1, 1, 0.37254903, 1, 0.37254903, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_u6hci"]
 gradient = SubResource("Gradient_ci5fh")

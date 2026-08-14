@@ -1,20 +1,34 @@
 [gd_scene format=3 uid="uid://bbia0fdrgd7a8"]
 
-[ext_resource type="PackedScene" uid="uid://dnnl876kswwkg" path="res://global/scenes/VFX/CRTFilter.tscn" id="2_mqdnt"]
+[ext_resource type="Script" uid="uid://cirmpll4xedy3" path="res://scripts/menu/MenuOptions.gd" id="1_mqdnt"]
 [ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="3_6oq8s"]
+[ext_resource type="AudioStream" uid="uid://osf5eppbg5jv" path="res://assets/sfx/menu_confirm.wav" id="3_mqdnt"]
+[ext_resource type="PackedScene" uid="uid://dsw4jmn2x3vr1" path="res://global/scenes/VFX/VFX.tscn" id="3_n51mn"]
+[ext_resource type="Texture2D" uid="uid://3vm4qkewj4v1" path="res://assets/menu/square.png" id="5_6oq8s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_isfe7"]
 font = ExtResource("3_6oq8s")
 font_size = 52
 
+[sub_resource type="LabelSettings" id="LabelSettings_n51mn"]
+font = ExtResource("3_6oq8s")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_3252u"]
+font = ExtResource("3_6oq8s")
+font_size = 21
+
+[sub_resource type="LabelSettings" id="LabelSettings_mqdnt"]
+font = ExtResource("3_6oq8s")
+font_size = 32
+
 [node name="Options" type="Node2D" unique_id=184439916]
+script = ExtResource("1_mqdnt")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1837718203]
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.09470794, 0.3814538, 0.053624988, 1)
+[node name="VFX" parent="." unique_id=714479216 instance=ExtResource("3_n51mn")]
 
-[node name="CRTFilter" parent="." unique_id=178072553 instance=ExtResource("2_mqdnt")]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=812476698]
+stream = ExtResource("3_mqdnt")
 
 [node name="Title" type="Label" parent="." unique_id=1627101250]
 offset_left = 64.0
@@ -27,3 +41,117 @@ text = "OPTIONS"
 label_settings = SubResource("LabelSettings_isfe7")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="." unique_id=2124801271]
+offset_left = 128.0
+offset_top = 192.0
+offset_right = 305.0
+offset_bottom = 240.0
+pivot_offset = Vector2(104, 80)
+size_flags_horizontal = 4
+text = "Controls:"
+label_settings = SubResource("LabelSettings_n51mn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeybindsLabel" type="Label" parent="." unique_id=1284490913]
+offset_left = 192.0
+offset_top = 264.0
+offset_right = 454.0
+offset_bottom = 417.0
+pivot_offset = Vector2(104, 80)
+size_flags_horizontal = 4
+text = "J - ATTACK
+
+K - SPECIAL
+
+L  - CHANGE SPECIAL"
+label_settings = SubResource("LabelSettings_3252u")
+vertical_alignment = 1
+
+[node name="FilterLabel" type="Label" parent="." unique_id=1045942914]
+offset_left = 704.0
+offset_top = 192.0
+offset_right = 853.0
+offset_bottom = 240.0
+pivot_offset = Vector2(104, 80)
+size_flags_horizontal = 4
+text = "Filters:"
+label_settings = SubResource("LabelSettings_mqdnt")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReturnButton" type="Button" parent="." unique_id=2006451023]
+offset_left = 128.0
+offset_top = 576.0
+offset_right = 276.0
+offset_bottom = 625.0
+theme_override_fonts/font = ExtResource("3_6oq8s")
+theme_override_font_sizes/font_size = 32
+text = "Return"
+flat = true
+
+[node name="CRTLabel" type="Label" parent="." unique_id=2093532734]
+offset_left = 808.0
+offset_top = 400.0
+offset_right = 958.0
+offset_bottom = 427.0
+theme_override_fonts/font = ExtResource("3_6oq8s")
+theme_override_font_sizes/font_size = 21
+text = "CRT FILTER"
+
+[node name="CRTButton" type="Button" parent="CRTLabel" unique_id=1615203080]
+layout_mode = 0
+offset_left = -13.60001
+offset_top = -248.00003
+offset_right = 506.4
+offset_bottom = 271.99997
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(264, 264)
+icon = ExtResource("5_6oq8s")
+flat = true
+
+[node name="GameBoyFilterLabel" type="Label" parent="." unique_id=789053172]
+offset_left = 744.0
+offset_top = 272.0
+offset_right = 959.0
+offset_bottom = 299.0
+theme_override_fonts/font = ExtResource("3_6oq8s")
+theme_override_font_sizes/font_size = 21
+text = "GAMEBOY FILTER"
+
+[node name="GamBoyButton" type="Button" parent="GameBoyFilterLabel" unique_id=1299018502]
+layout_mode = 0
+offset_left = 50.399986
+offset_top = -248.00003
+offset_right = 570.39996
+offset_bottom = 271.99997
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(264, 264)
+icon = ExtResource("5_6oq8s")
+flat = true
+
+[node name="NeutralFilterLabel" type="Label" parent="." unique_id=339813137]
+offset_left = 744.0
+offset_top = 336.0
+offset_right = 957.0
+offset_bottom = 363.0
+theme_override_fonts/font = ExtResource("3_6oq8s")
+theme_override_font_sizes/font_size = 21
+text = "NEUTRAL FILTER"
+
+[node name="NeutralButton" type="Button" parent="NeutralFilterLabel" unique_id=105201486]
+layout_mode = 0
+offset_left = 50.399986
+offset_top = -248.00003
+offset_right = 570.39996
+offset_bottom = 271.99997
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(264, 264)
+icon = ExtResource("5_6oq8s")
+flat = true
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="CRTLabel/CRTButton" to="." method="_on_crt_button_pressed"]
+[connection signal="pressed" from="GameBoyFilterLabel/GamBoyButton" to="." method="_on_gam_boy_button_pressed"]
+[connection signal="pressed" from="NeutralFilterLabel/NeutralButton" to="." method="_on_neutral_button_pressed"]

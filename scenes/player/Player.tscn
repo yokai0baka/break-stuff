@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://b7gib4jymiuye" path="res://scripts/player/Player.gd" id="1_gfjak"]
 [ext_resource type="PackedScene" uid="uid://g6ekokuk8fj1" path="res://scenes/player/Player2DModel.tscn" id="1_wr5hl"]
-[ext_resource type="PackedScene" uid="uid://dnnl876kswwkg" path="res://global/scenes/VFX/CRTFilter.tscn" id="2_524rm"]
 [ext_resource type="Script" uid="uid://vs6ovohtkke8" path="res://scenes/player/camera_3d.gd" id="2_c3xxp"]
 [ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="2_tpg5x"]
 [ext_resource type="Texture2D" uid="uid://8dharss14bjg" path="res://assets/geiger/geiger_high1.png" id="3_8qjgm"]
@@ -10,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dstipolmg1awp" path="res://scripts/player/Attack.gd" id="3_524rm"]
 [ext_resource type="Texture2D" uid="uid://bhembrkn3he43" path="res://assets/geiger/geiger_low2.png" id="4_20koh"]
 [ext_resource type="Texture2D" uid="uid://bf6mseu3wqdju" path="res://assets/geiger/geiger_high2.png" id="4_ejd4k"]
-[ext_resource type="PackedScene" uid="uid://dsw4jmn2x3vr1" path="res://global/scenes/VFX/PaletteChanger.tscn" id="5_pn6s4"]
+[ext_resource type="PackedScene" uid="uid://dsw4jmn2x3vr1" path="res://global/scenes/VFX/VFX.tscn" id="5_pn6s4"]
 [ext_resource type="Texture2D" uid="uid://bohtx2g1c51fc" path="res://assets/geiger/geiger_mid1.png" id="7_2xrq6"]
 [ext_resource type="Script" uid="uid://ctep3r0a3nafy" path="res://scripts/player/Special.gd" id="7_7oing"]
 [ext_resource type="Texture2D" uid="uid://cokbdnirrxfna" path="res://assets/geiger/geiger_mid2.png" id="8_pi3ps"]
@@ -19,9 +18,17 @@
 [ext_resource type="Texture2D" uid="uid://ld6jfnv24ajv" path="res://assets/special_marker/marker1.png" id="9_pi3ps"]
 [ext_resource type="Texture2D" uid="uid://bglxay4jdsusd" path="res://assets/special_marker/marker2.png" id="10_kswpp"]
 [ext_resource type="Texture2D" uid="uid://c04vcpg0b0k11" path="res://assets/special_marker/marker3.png" id="11_v5i4m"]
+[ext_resource type="Texture2D" uid="uid://bw3x6jfl2iuxr" path="res://assets/bomber_bar/bomber_bar1.png" id="12_mndc6"]
+[ext_resource type="Texture2D" uid="uid://drohqsl1qy1k2" path="res://assets/bomber_bar/bomber_bar2.png" id="13_1hh02"]
+[ext_resource type="Texture2D" uid="uid://d07ho3juamest" path="res://assets/bomber_bar/bomber_bar3.png" id="14_5ttev"]
+[ext_resource type="Texture2D" uid="uid://c7dqic0wjpb54" path="res://assets/bomber_bar/bomber_bar4.png" id="15_geaob"]
 [ext_resource type="AudioStream" uid="uid://7n1jjq8j5qsx" path="res://assets/sfx/special1.wav" id="15_kswpp"]
+[ext_resource type="Texture2D" uid="uid://0ald4ncysidh" path="res://assets/bomber_bar/bomber_bar5.png" id="16_qsmrd"]
+[ext_resource type="Texture2D" uid="uid://b4akwvumygpsv" path="res://assets/bomber_bar/bomber_bar6.png" id="17_jtlb7"]
 [ext_resource type="AudioStream" uid="uid://djtqc2w17dkth" path="res://assets/sfx/special2_hit.wav" id="20_v5i4m"]
 [ext_resource type="AudioStream" uid="uid://bghavptenfc8i" path="res://assets/sfx/special3.wav" id="21_p1lr0"]
+[ext_resource type="PackedScene" uid="uid://d4i7d0635ivpp" path="res://global/scenes/VFX/Fire.tscn" id="27_1hh02"]
+[ext_resource type="PackedScene" uid="uid://dbmi85ter0ame" path="res://global/scenes/VFX/Smoke.tscn" id="28_5ttev"]
 
 [sub_resource type="Animation" id="Animation_180ig"]
 length = 0.001
@@ -481,6 +488,42 @@ animations = [{
 }],
 "loop": 0,
 "name": &"selector",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uow18"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_qsmrd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_jtlb7")
+}],
+"loop": 1,
+"name": &"high",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_mndc6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_1hh02")
+}],
+"loop": 1,
+"name": &"low",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_5ttev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_geaob")
+}],
+"loop": 1,
+"name": &"mid",
 "speed": 5.0
 }]
 
@@ -1196,6 +1239,31 @@ height = 0.5
 [sub_resource type="SphereShape3D" id="SphereShape3D_isfe7"]
 radius = 2.5
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76i7i"]
+albedo_color = Color(0.15701097, 0.157011, 0.157011, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_isfe7"]
+material = SubResource("StandardMaterial3D_76i7i")
+radius = 0.1
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mndc6"]
+albedo_color = Color(0.2162964, 0.2162964, 0.2162964, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_isfe7"]
+material = SubResource("StandardMaterial3D_mndc6")
+top_radius = 0.2
+bottom_radius = 0.2
+height = 0.2
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8ema7"]
+albedo_color = Color(0.19087476, 0.19087473, 0.19087473, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_vaj5l"]
+material = SubResource("StandardMaterial3D_8ema7")
+
 [sub_resource type="Animation" id="Animation_c3xxp"]
 resource_name = "Idle"
 length = 0.8
@@ -1276,6 +1344,162 @@ _data = {
 &"RESET": SubResource("Animation_tpg5x")
 }
 
+[sub_resource type="Animation" id="Animation_mndc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomber:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fire:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attacks/Special1Sound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attacks/Special3Sound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bomber:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_76i7i"]
+resource_name = "drop"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bomber:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -4.5, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Fire:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Smoke:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Attacks/Special1Sound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Attacks/Special3Sound:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.16666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Bomber:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mndc6"]
+_data = {
+&"RESET": SubResource("Animation_mndc6"),
+&"drop": SubResource("Animation_76i7i")
+}
+
 [node name="Player" type="CharacterBody3D" unique_id=1369012743]
 script = ExtResource("1_gfjak")
 
@@ -1318,6 +1542,12 @@ position = Vector2(1064, 648)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_vaj5l")
 animation = &"selector"
+
+[node name="BomberBar" type="AnimatedSprite2D" parent="SpringArm3D/Camera3D/HUD" unique_id=326520040]
+position = Vector2(1072, 96)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_uow18")
+animation = &"high"
 
 [node name="Score" type="Label" parent="SpringArm3D/Camera3D/HUD" unique_id=1234116571]
 layout_mode = 0
@@ -1453,12 +1683,7 @@ text = "RESTART
 "
 flat = true
 
-[node name="CRTFilter" parent="SpringArm3D/Camera3D/HUD" unique_id=178072553 instance=ExtResource("2_524rm")]
-
-[node name="PaletteChanger" parent="SpringArm3D/Camera3D/HUD" unique_id=714479216 instance=ExtResource("5_pn6s4")]
-layout_mode = 1
-offset_right = 1240.0
-offset_bottom = 680.0
+[node name="VFX" parent="SpringArm3D/Camera3D/HUD" unique_id=714479216 instance=ExtResource("5_pn6s4")]
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1191421823]
 transform = Transform3D(1.5, 0, 0, 0, 1.0606601, 1.0606601, 0, -1.0606601, 1.0606601, 0, 0, 0)
@@ -1562,9 +1787,32 @@ stream = ExtResource("20_v5i4m")
 stream = ExtResource("21_p1lr0")
 volume_db = -2.0
 
+[node name="Bomber" type="Node3D" parent="." unique_id=953697735]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bomber" unique_id=235046818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4, 0)
+mesh = SubResource("CapsuleMesh_isfe7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bomber/MeshInstance3D" unique_id=1757480804]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19999981, 0)
+mesh = SubResource("CylinderMesh_isfe7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Bomber/MeshInstance3D" unique_id=1573064577]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, -0.19999981, 0)
+mesh = SubResource("SphereMesh_vaj5l")
+
+[node name="Fire" parent="." unique_id=1805636857 instance=ExtResource("27_1hh02")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -9.685755e-08, 0)
+
+[node name="Smoke" parent="." unique_id=2054812067 instance=ExtResource("28_5ttev")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
 [node name="AnimationJuice" type="AnimationPlayer" parent="." unique_id=53341368]
 libraries/ = SubResource("AnimationLibrary_tpg5x")
 autoplay = &"Idle"
+
+[node name="AnimationBomber" type="AnimationPlayer" parent="." unique_id=842763783]
+libraries/ = SubResource("AnimationLibrary_mndc6")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=1164842922]
 transparent_bg = true

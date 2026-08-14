@@ -9,7 +9,7 @@ func _on_play_pressed() -> void:
 	$Exit.disabled = true
 	await get_tree().create_timer(0.5).timeout
 	await get_tree().process_frame
-	get_tree().change_scene_to_file("res://scenes/stages/City.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu/SelectStage.tscn")
 
 func _on_options_pressed() -> void:
 	$AudioStreamPlayer2D.play()

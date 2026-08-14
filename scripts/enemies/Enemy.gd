@@ -19,12 +19,15 @@ func _process(delta: float) -> void:
 	else:
 		SPEED = 0.75
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	var current_location = global_transform.origin
 	var next_location = navigation_agent_3d.get_next_path_position()
 	var new_velocity = (next_location - current_location).normalized() * SPEED
 	
 	velocity = velocity.move_toward(new_velocity, .25)
+	
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	
 	if next_location.x > 0:
 		$Sprite3D.flip_h = false

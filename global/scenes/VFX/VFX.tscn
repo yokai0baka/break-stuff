@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dsw4jmn2x3vr1"]
+
+[ext_resource type="Script" uid="uid://ct681lwyma3u6" path="res://global/scripts/VFX.gd" id="1_2d1mb"]
+[ext_resource type="Shader" uid="uid://fmipiuk6nmwk" path="res://global/scripts/palette.gdshader" id="1_56ni6"]
+[ext_resource type="Shader" uid="uid://d2j5bpl8ifp3f" path="res://global/scripts/CRTFilter.gdshader" id="1_588nk"]
+[ext_resource type="Texture2D" uid="uid://dfyw5ktwd08i7" path="res://assets/palettes/kirokaze-gameboy-1x.png" id="2_588nk"]
+[ext_resource type="Texture2D" uid="uid://bftwtch8gxnh5" path="res://assets/palettes/bittersweet-1x.png" id="3_2d1mb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ema7"]
+shader = ExtResource("1_588nk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vaj5l"]
+size = Vector2(1280, 720)
+center_offset = Vector3(640, 360, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4k3fe"]
+shader = ExtResource("1_56ni6")
+shader_parameter/palette = ExtResource("2_588nk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_df1mp"]
+shader = ExtResource("1_56ni6")
+shader_parameter/palette = ExtResource("3_2d1mb")
+
+[node name="VFX" type="Node2D" unique_id=1625386590]
+script = ExtResource("1_2d1mb")
+
+[node name="CRTFilter" type="CanvasLayer" parent="." unique_id=178072553]
+
+[node name="ColorRect" type="ColorRect" parent="CRTFilter" unique_id=959638083]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.0627451, 0.28627452, 0.03137255, 0.3019608)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="CRTFilter" unique_id=1080925416]
+material = SubResource("ShaderMaterial_8ema7")
+mesh = SubResource("QuadMesh_vaj5l")
+
+[node name="GreenBoy" type="ColorRect" parent="." unique_id=960485620]
+material = SubResource("ShaderMaterial_4k3fe")
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="NeutralCozy" type="ColorRect" parent="." unique_id=1612553073]
+visible = false
+material = SubResource("ShaderMaterial_df1mp")
+offset_right = 1280.0
+offset_bottom = 720.0

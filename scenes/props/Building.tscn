@@ -4,10 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dbmi85ter0ame" path="res://global/scenes/VFX/Smoke.tscn" id="2_u6hci"]
 [ext_resource type="PackedScene" uid="uid://jd2kmmo8yu0e" path="res://global/scenes/VFX/Debris.tscn" id="3_n5e78"]
 [ext_resource type="AudioStream" uid="uid://c4quxpoexehl4" path="res://assets/sfx/hit_building.wav" id="4_rj8p2"]
+[ext_resource type="Texture2D" uid="uid://c8sokqfgvr6ed" path="res://assets/tiles/city/building_sheet.png" id="5_ata8d"]
 [ext_resource type="AudioStream" uid="uid://i2smcev5q4v6" path="res://assets/sfx/explosion_building.wav" id="5_d2qhy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1phne"]
-albedo_color = Color(0, 1, 0, 1)
+albedo_texture = ExtResource("5_ata8d")
+uv1_scale = Vector3(3, 3, 3)
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_isfe7"]
 material = SubResource("StandardMaterial3D_1phne")
