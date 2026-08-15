@@ -17,6 +17,8 @@ var actual_special = 1
 var current_scene = "res://scenes/stages/" + str(Global.selected_stage) + ".tscn"
 
 func _ready() -> void:
+	$BattleMusic.play()
+	$SpringArm3D/Camera3D/HUD/TransitionScreen.play("fade_out")
 	$SpringArm3D/Camera3D/HUD/StartLabel.visible = true
 	await get_tree().create_timer(1.0).timeout
 	$SpringArm3D/Camera3D/HUD/StartLabel.visible = false
@@ -59,16 +61,20 @@ func _process(_delta: float) -> void:
 				if Global.energy >= 6:
 					if $Sprite3D.flip_h == false:
 						$Attacks/AnimationSpecial.play("special1_L")
+						set_physics_process(false)
 						await get_tree().create_timer(2.0).timeout
 						if not is_inside_tree() or Global.end_game:
 							return
 						Global.energy = 0
+						set_physics_process(true)
 					elif $Sprite3D.flip_h == true:
 						$Attacks/AnimationSpecial.play("special1_R")
+						set_physics_process(false)
 						await get_tree().create_timer(2.0).timeout
 						if not is_inside_tree() or Global.end_game:
 							return
 						Global.energy = 0
+						set_physics_process(true)
 			2:
 				if Global.energy >= 6:
 					$Attacks/AnimationSpecial.play("special2")
@@ -130,7 +136,10 @@ func _process(_delta: float) -> void:
 		Global.player_attacked = true
 		Global.time -= 30.0
 		$AnimationBomber.play("drop")
+		$SpringArm3D/Camera3D/HUD/BomberLabel.visible = true
 		Global.bomber_drop = false
+	else:
+		$SpringArm3D/Camera3D/HUD/BomberLabel.visible = false
 	
 	if Global.bomber_time >= 10:
 		$SpringArm3D/Camera3D/HUD/BomberBar.play("high")
@@ -168,8 +177,11 @@ func _physics_process(delta: float) -> void:
 	
 		# Trigger end game
 	if Global.end_game:
+		$BattleMusic.stop()
 		set_process(false)
 		set_physics_process(false)
+		$SpringArm3D/Camera3D/HUD/TransitionScreen.play("fade_in")
+		await get_tree().create_timer(2.0).timeout
 		await get_tree().process_frame
 		get_tree().change_scene_to_file("res://scenes/menu/MainMenu.tscn")
 	

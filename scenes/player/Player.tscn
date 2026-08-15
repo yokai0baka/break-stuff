@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b7gib4jymiuye" path="res://scripts/player/Player.gd" id="1_gfjak"]
 [ext_resource type="PackedScene" uid="uid://g6ekokuk8fj1" path="res://scenes/player/Player2DModel.tscn" id="1_wr5hl"]
+[ext_resource type="AudioStream" uid="uid://d1yf2vrpp0ov" path="res://assets/musics/battle.wav" id="2_5ttev"]
 [ext_resource type="Script" uid="uid://vs6ovohtkke8" path="res://scenes/player/camera_3d.gd" id="2_c3xxp"]
 [ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="2_tpg5x"]
 [ext_resource type="Texture2D" uid="uid://8dharss14bjg" path="res://assets/geiger/geiger_high1.png" id="3_8qjgm"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" uid="uid://dstipolmg1awp" path="res://scripts/player/Attack.gd" id="3_524rm"]
 [ext_resource type="Texture2D" uid="uid://bhembrkn3he43" path="res://assets/geiger/geiger_low2.png" id="4_20koh"]
 [ext_resource type="Texture2D" uid="uid://bf6mseu3wqdju" path="res://assets/geiger/geiger_high2.png" id="4_ejd4k"]
+[ext_resource type="PackedScene" uid="uid://bbv3kulb3rsbo" path="res://global/TransitionScreen.tscn" id="4_geaob"]
 [ext_resource type="PackedScene" uid="uid://dsw4jmn2x3vr1" path="res://global/scenes/VFX/VFX.tscn" id="5_pn6s4"]
 [ext_resource type="Texture2D" uid="uid://bohtx2g1c51fc" path="res://assets/geiger/geiger_mid1.png" id="7_2xrq6"]
 [ext_resource type="Script" uid="uid://ctep3r0a3nafy" path="res://scripts/player/Special.gd" id="7_7oing"]
@@ -559,7 +561,7 @@ font_size = 52
 
 [sub_resource type="LabelSettings" id="LabelSettings_vaj5l"]
 font = ExtResource("2_tpg5x")
-font_size = 36
+font_size = 52
 
 [sub_resource type="LabelSettings" id="LabelSettings_c3xxp"]
 font = ExtResource("2_tpg5x")
@@ -1503,6 +1505,9 @@ _data = {
 [node name="Player" type="CharacterBody3D" unique_id=1369012743]
 script = ExtResource("1_gfjak")
 
+[node name="BattleMusic" type="AudioStreamPlayer3D" parent="." unique_id=1605678821]
+stream = ExtResource("2_5ttev")
+
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=369846281]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660253, 0, -0.8660253, 0.49999997, 0, 1, 0.7)
 
@@ -1529,6 +1534,8 @@ autoplay = &"jiggle"
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0, 0, 0, 0)
+
+[node name="TransitionScreen" parent="SpringArm3D/Camera3D/HUD" unique_id=1964138972 instance=ExtResource("4_geaob")]
 
 [node name="Geiger" type="AnimatedSprite2D" parent="SpringArm3D/Camera3D/HUD" unique_id=1674318281]
 position = Vector2(1064, 512)
@@ -1628,12 +1635,11 @@ text = "BREAK'EM ALL"
 label_settings = SubResource("LabelSettings_isfe7")
 
 [node name="BomberLabel" type="Label" parent="SpringArm3D/Camera3D/HUD" unique_id=1337593115]
-visible = false
 layout_mode = 0
-offset_left = 424.0
-offset_top = 312.0
-offset_right = 879.0
-offset_bottom = 358.0
+offset_left = 312.0
+offset_top = 320.0
+offset_right = 969.0
+offset_bottom = 387.0
 text = "BOMBER APROACHING"
 label_settings = SubResource("LabelSettings_vaj5l")
 

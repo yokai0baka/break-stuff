@@ -1,0 +1,190 @@
+[gd_scene format=3 uid="uid://cfijd8u702pls"]
+
+[ext_resource type="Script" uid="uid://bi2nb80uv0tx7" path="res://scripts/enemies/Enemy.gd" id="1_pgc7i"]
+[ext_resource type="AudioStream" uid="uid://vt1i3noghrd7" path="res://assets/sfx/hit_player.wav" id="2_a6obp"]
+[ext_resource type="AudioStream" uid="uid://bbup4rryhjxuh" path="res://assets/sfx/destroy_enemy.wav" id="3_2slem"]
+[ext_resource type="PackedScene" uid="uid://d4i7d0635ivpp" path="res://global/scenes/VFX/Fire.tscn" id="4_c4rm4"]
+[ext_resource type="PackedScene" uid="uid://dbmi85ter0ame" path="res://global/scenes/VFX/Smoke.tscn" id="5_mn4kr"]
+[ext_resource type="PackedScene" uid="uid://bhxgwakbcmqlc" path="res://scenes/enemies/Boat2DModel.tscn" id="6_pgc7i"]
+[ext_resource type="PackedScene" uid="uid://df0d5jrbusxay" path="res://scenes/enemies/Shooting2DModel.tscn" id="7_pmahb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ektc"]
+size = Vector3(0.4, 0.4, 0.3)
+
+[sub_resource type="Animation" id="Animation_wlk0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fire:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite3D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.0471976, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_28y18"]
+resource_name = "death"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fire:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Smoke:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_34pfc"]
+resource_name = "moving"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.0471976, 0, 0), Vector3(-0.99089426, -0.42142913, 0.4919523), Vector3(-1.0471976, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wlk0k"]
+_data = {
+&"RESET": SubResource("Animation_wlk0k"),
+&"death": SubResource("Animation_28y18"),
+&"moving": SubResource("Animation_34pfc")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_isfe7"]
+height = 0.95000005
+radius = 0.6
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_85jaq"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ombd6"]
+viewport_path = NodePath("SubViewportShoot")
+
+[node name="Boat" type="CharacterBody3D" unique_id=598381739 groups=["Enemies"]]
+script = ExtResource("1_pgc7i")
+
+[node name="AttackSound" type="AudioStreamPlayer3D" parent="." unique_id=956969995]
+stream = ExtResource("2_a6obp")
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="." unique_id=1241545186]
+stream = ExtResource("3_2slem")
+
+[node name="Fire" parent="." unique_id=1805636857 instance=ExtResource("4_c4rm4")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Smoke" parent="." unique_id=2054812067 instance=ExtResource("5_mn4kr")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1339956971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10000001, 0)
+shape = SubResource("BoxShape3D_3ektc")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1503873068]
+target_desired_distance = 1.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=155799916]
+libraries/ = SubResource("AnimationLibrary_wlk0k")
+
+[node name="Hitzone" type="Area3D" parent="." unique_id=257265455]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitzone" unique_id=768326732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+shape = SubResource("CylinderShape3D_isfe7")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=360923167]
+transform = Transform3D(1.9999999, 0, 0, 0, 0.99999994, 1.7320509, 0, -1.7320509, 0.99999994, 0, 0, 0)
+texture_filter = 0
+texture = SubResource("ViewportTexture_85jaq")
+
+[node name="Sprite3DAttack" type="Sprite3D" parent="." unique_id=1406073030]
+transform = Transform3D(1.4142137, -1.2247449, 0.7071067, 0, 0.99999994, 1.7320509, -1.4142135, -1.224745, 0.70710677, 0.24301535, 0, -0.24521556)
+texture_filter = 0
+texture = SubResource("ViewportTexture_ombd6")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1762458685]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(32, 32)
+
+[node name="Boat2DModel" parent="SubViewport" unique_id=553129782 instance=ExtResource("6_pgc7i")]
+
+[node name="SubViewportShoot" type="SubViewport" parent="." unique_id=1045432261]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(64, 64)
+
+[node name="Shooting2DModel" parent="SubViewportShoot" unique_id=1464839334 instance=ExtResource("7_pmahb")]
+
+[node name="AnimationShooting" parent="SubViewportShoot/Shooting2DModel" index="2" unique_id=2017067362]
+autoplay = &"shooting"
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="area_entered" from="Hitzone" to="." method="_on_hitzone_area_entered"]
+
+[editable path="SubViewportShoot/Shooting2DModel"]

@@ -1,0 +1,256 @@
+[gd_scene format=3 uid="uid://brc3lqenp0uyb"]
+
+[ext_resource type="Script" uid="uid://bg2ex8mtcdcee" path="res://scripts/props/Building.gd" id="1_ogjvv"]
+[ext_resource type="PackedScene" uid="uid://dbmi85ter0ame" path="res://global/scenes/VFX/Smoke.tscn" id="2_pn4mr"]
+[ext_resource type="PackedScene" uid="uid://jd2kmmo8yu0e" path="res://global/scenes/VFX/Debris.tscn" id="3_anw5d"]
+[ext_resource type="AudioStream" uid="uid://c4quxpoexehl4" path="res://assets/sfx/hit_building.wav" id="4_mtvpu"]
+[ext_resource type="Texture2D" uid="uid://d1evbt2uf8ujj" path="res://assets/tiles/desert/pyramid.png" id="5_ogjvv"]
+[ext_resource type="AudioStream" uid="uid://i2smcev5q4v6" path="res://assets/sfx/explosion_building.wav" id="6_wvtqr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k20ln"]
+albedo_texture = ExtResource("5_ogjvv")
+uv1_scale = Vector3(8, 8, 8)
+texture_filter = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1phne"]
+size = Vector3(1.3000001, 1.5, 1.3000001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dyfce"]
+size = Vector3(1.2, 1.5, 1.3000001)
+
+[sub_resource type="Animation" id="Animation_dyfce"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Debris:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitzone/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node3D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1phne"]
+resource_name = "collapsed"
+length = 2.5000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Smoke:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Debris:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitzone/CollisionShape3D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("DestroyedSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_wvtqr")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Node3D:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.1990813, 0.29667628, 0.4, 0.4997367, 0.5997367, 0.69973665, 0.798818, 0.89641297, 0.99973667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.08726646), Vector3(0, 0, 0), Vector3(0, 0, -0.08726646), Vector3(0, 0, 0), Vector3(0, 0, -0.08726646), Vector3(0, 0, 0), Vector3(0, 0, 0.08726646), Vector3(0, 0, 0), Vector3(0, 0, -0.08726646), Vector3(0, 0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Node3D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.99759156, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, -2.741621, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u6hci"]
+resource_name = "damage"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Debris:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.2990813, 0.39667627, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.08726646), Vector3(0, 0, 0), Vector3(0, 0, 0.08726646), Vector3(0, 0, 0), Vector3(0, 0, -0.08726646), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u6hci"]
+_data = {
+&"RESET": SubResource("Animation_dyfce"),
+&"collapsed": SubResource("Animation_1phne"),
+&"damage": SubResource("Animation_u6hci")
+}
+
+[node name="Pyramid" type="RigidBody3D" unique_id=1504472231]
+collision_layer = 3
+collision_mask = 3
+freeze = true
+script = ExtResource("1_ogjvv")
+
+[node name="Smoke" parent="." unique_id=2054812067 instance=ExtResource("2_pn4mr")]
+
+[node name="Debris" parent="." unique_id=1087684908 instance=ExtResource("3_anw5d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+lifetime = 1.0
+
+[node name="HitSound" type="AudioStreamPlayer3D" parent="." unique_id=1413425557]
+stream = ExtResource("4_mtvpu")
+volume_db = -8.0
+
+[node name="DestroyedSound" type="AudioStreamPlayer3D" parent="." unique_id=332530725]
+volume_db = -10.0
+
+[node name="Node3D" type="Node3D" parent="." unique_id=851996911]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="Node3D" unique_id=366005198]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -0.5, 0, 0.5)
+polygon = PackedVector2Array(-0.15, 0, 1.15, 0, 0.5, 1.1)
+depth = 0.01
+material = SubResource("StandardMaterial3D_k20ln")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Node3D" unique_id=1254413882]
+transform = Transform3D(-4.3638064e-08, -0.5493021, 0.8356238, -2.530787e-09, 0.8356238, 0.5493021, -1, 2.1855694e-08, -3.7855173e-08, 0.63760906, 0, 0.3459815)
+polygon = PackedVector2Array(-0.15, 0, 1.15, 0, 0.4057822, 1.1455514)
+depth = 0.01
+material = SubResource("StandardMaterial3D_k20ln")
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="Node3D" unique_id=1348257003]
+transform = Transform3D(-4.3849532e-08, 0.58091325, -0.81396544, -8.514457e-10, 0.81396544, 0.58091325, 1, 2.6165822e-08, -3.519738e-08, -0.6533307, 0, -0.64247483)
+polygon = PackedVector2Array(-0.15, 0, 1.15, 0, 0.5721724, 1.1548014)
+depth = 0.01
+material = SubResource("StandardMaterial3D_k20ln")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Node3D" unique_id=293708636]
+transform = Transform3D(-1, -4.371139e-08, 7.5710346e-08, 1.3473571e-08, 0.7786184, 0.6274977, -8.6378265e-08, 0.6274977, -0.7786184, 0.5000237, 0, -0.79692066)
+polygon = PackedVector2Array(-0.15, 0, 1.15, 0, 0.4939453, 1.2052426)
+depth = 0.01
+material = SubResource("StandardMaterial3D_k20ln")
+
+[node name="Hitzone" type="Area3D" parent="." unique_id=1907597136]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitzone" unique_id=315731654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, -0.15000002)
+shape = SubResource("BoxShape3D_1phne")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1567540397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.54999995, -0.15000002)
+shape = SubResource("BoxShape3D_dyfce")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1371727898]
+libraries/ = SubResource("AnimationLibrary_u6hci")
+
+[connection signal="area_entered" from="Hitzone" to="." method="_on_hitzone_area_entered"]

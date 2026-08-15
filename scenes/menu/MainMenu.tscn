@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://box3ty7utlf5n" path="res://scripts/menu/MainMenu.gd" id="1_uwj7d"]
 [ext_resource type="AudioStream" uid="uid://osf5eppbg5jv" path="res://assets/sfx/menu_confirm.wav" id="2_iv2fv"]
 [ext_resource type="FontFile" uid="uid://cmgik4vy0fsbd" path="res://assets/fonts/Retro Gaming.ttf" id="3_iv2fv"]
+[ext_resource type="PackedScene" uid="uid://bbv3kulb3rsbo" path="res://global/TransitionScreen.tscn" id="4_iv2fv"]
 [ext_resource type="PackedScene" uid="uid://dsw4jmn2x3vr1" path="res://global/scenes/VFX/VFX.tscn" id="5_iv2fv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_isfe7"]
@@ -19,6 +20,9 @@ script = ExtResource("1_uwj7d")
 stream = ExtResource("2_iv2fv")
 
 [node name="VFX" parent="." unique_id=714479216 instance=ExtResource("5_iv2fv")]
+
+[node name="TransitionScreen" parent="." unique_id=1964138972 instance=ExtResource("4_iv2fv")]
+autoplay = &"fade_out"
 
 [node name="Title" type="Label" parent="." unique_id=1627101250]
 offset_left = 544.0

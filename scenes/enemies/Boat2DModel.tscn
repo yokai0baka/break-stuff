@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bhxgwakbcmqlc"]
+
+[ext_resource type="Texture2D" uid="uid://bg1emcp54hxiw" path="res://assets/enemies/boat.png" id="1_ang3e"]
+
+[node name="Boat2DModel" type="Node2D" unique_id=553129782]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=2020622218]
+offset_right = 32.0
+offset_bottom = 32.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1752494143]
+position = Vector2(15, 14)
+texture = ExtResource("1_ang3e")
+flip_h = true

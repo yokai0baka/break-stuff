@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready() -> void:
 	Global.return_values()
+	MenuMusic.play()
 
 func _on_play_pressed() -> void:
 	$AudioStreamPlayer2D.play()
