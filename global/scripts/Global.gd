@@ -45,3 +45,4 @@ func return_values():
 	Global.game_paused = false
 	Global.end_game = false
 	Global.bomber_time = 0
+	Global.energy = 0
